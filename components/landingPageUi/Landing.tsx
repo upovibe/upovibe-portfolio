@@ -2,6 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import SignIn from "@/components/layouts/SignIn";
+import Hero from "@/components/landingPageUi/Hero";
+import ScrollToTop from "@/components/ui/ScrollToTop";
+
 
 // Define a functional component without props
 const Landing: React.FC = () => {
@@ -32,12 +35,12 @@ const Landing: React.FC = () => {
   return (
     <main className="flex flex-col items-center justify-center">
       {/* Commented out unused components */}
-      {/* <Hero />
-      <About />
-      <Skills skills={skills} />
-      <ProjectArchive projects={projects} />
-      <ContactMe contactlinks={contactlinks} />
-      <ScrollToTop /> */}
+      <Hero />
+      {/* <About /> */}
+      {/* <Skills skills={skills} /> */}
+      {/* <ProjectArchive projects={projects} /> */}
+      {/* <ContactMe contactlinks={contactlinks} /> */}
+      <ScrollToTop />
       <SignIn isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
     </main>
   );
