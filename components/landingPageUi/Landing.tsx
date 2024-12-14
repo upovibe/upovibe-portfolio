@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import SignIn from "@/components/layouts/SignIn";
-import Hero from "@/components/landingPageUi/Hero";
+// import Hero from "@/components/landingPageUi/Hero";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 
 
@@ -35,7 +35,7 @@ const Landing: React.FC = () => {
   return (
     <main className="flex flex-col items-center justify-center">
       {/* Commented out unused components */}
-      <Hero />
+      {/* <Hero /> */}
       {/* <About /> */}
       {/* <Skills skills={skills} /> */}
       {/* <ProjectArchive projects={projects} /> */}
