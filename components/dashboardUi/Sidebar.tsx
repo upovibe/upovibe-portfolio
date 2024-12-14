@@ -6,7 +6,7 @@ import Link from "next/link";
 import {
   LayoutDashboard,
   FolderGit2,
-  FilePenLine,
+  // FilePenLine,
   Settings,
   LogOut,
   PanelRightClose,
@@ -24,8 +24,7 @@ interface SidebarProps {
 
 const menuItems = [
   { label: "Dashboard", icon: LayoutDashboard, href: "/dashboard" },
-  { label: "Project", icon: FolderGit2, href: "/dashboard/project" },
-  { label: "Blog", icon: FilePenLine, href: "/dashboard/blog" },
+  { label: "Projects", icon: FolderGit2, href: "/dashboard/project" },
   { label: "Settings", icon: Settings, href: "/dashboard/settings" },
 ];
 
