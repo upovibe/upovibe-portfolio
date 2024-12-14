@@ -1,4 +1,5 @@
 import React from "react";
+import { prisma } from "@/prisma";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,10 +10,30 @@ import {
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
 import { Tag } from "lucide-react";
-import { createProject } from "@/app/api/crude/formActions";
 import FormLayout from "@/components/dashboardUi/FormLayout";
+import { editProject } from "@/app/api/crude/formActions";
 
-const page = () => {
+interface PageProps {
+  params: Promise<{
+    slug: string;
+  }>;
+}
+
+const page = async ({ params }: PageProps) => {
+  const resolvedParams = await params;
+  const project = await prisma.project.findUnique({
+    where: {
+      slug: resolvedParams.slug,
+    },
+  });
+
+  if (!project || !project.id) {
+    return (
+      <div>
+        <h1 className="text-2xl font-bold">Project Not Found</h1>
+      </div>
+    );
+  }
   return (
     <div>
       <Breadcrumb className="border px-1 rounded-md mb-5">
@@ -26,16 +47,24 @@ const page = () => {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <Link href="/dashboard/project">Projects</Link>
+            <Link href="/dashboard/project">project</Link>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
-          <BreadcrumbPage>Add new</BreadcrumbPage>
+          <BreadcrumbItem>
+            <Link href={`/dashboard/project/${project.slug}`}>
+              {project.slug}
+            </Link>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Edit</BreadcrumbPage>
+          </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
       <div className="flex flex-col gap-2">
         <h1 className="text-2xl font-bold flex items-center gap-2">
           <Tag className="size-5" />
-          Add new project
+          Edit {project.slug}
         </h1>
         <FormLayout
           fields={["title", "description", "content", "tags", "image"]}
@@ -46,9 +75,16 @@ const page = () => {
             tags: "Tags",
             image: "Image",
           }}
-          onSubmit={createProject}
-          initialData={{}}
-          successRedirect={"/dashboard/project"}
+          onSubmit={editProject}
+          additionalSubmitArgs={[project.id]}
+          initialData={{
+            title: project.title,
+            description: project.description,
+            content: project.content,
+            tags: project.tags,
+            image: project.image,
+          }}
+          successRedirect={"/dashboard/projects"}
         />
       </div>
     </div>

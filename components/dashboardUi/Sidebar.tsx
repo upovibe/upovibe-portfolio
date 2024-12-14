@@ -11,6 +11,8 @@ import {
   LogOut,
   PanelRightClose,
   PanelLeftClose,
+  Lightbulb,
+  Contact,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -25,7 +27,8 @@ interface SidebarProps {
 const menuItems = [
   { label: "Dashboard", icon: LayoutDashboard, href: "/dashboard" },
   { label: "Projects", icon: FolderGit2, href: "/dashboard/project" },
-  { label: "Settings", icon: Settings, href: "/dashboard/settings" },
+  { label: "My Skills", icon: Lightbulb, href: "/dashboard/skills" },
+  { label: "My Contact", icon: Contact, href: "/dashboard/contactlink" },
 ];
 
 const Sidebar: React.FC<SidebarProps> = ({ user }) => {

@@ -90,7 +90,7 @@ const page: React.FC<PageProps> = async ({ params }: PageProps) => {
             action={deleteProject}
             args={[String(project.id)]}
             buttonText="Delete"
-            successRedirect="/dashboard/project"
+            successRedirect="/dashboard/projects"
             errorMessage="Error deleting project"
           />
         </div>

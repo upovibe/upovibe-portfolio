@@ -9,13 +9,14 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { FolderGit2 } from "lucide-react";
+import { Lightbulb } from "lucide-react";
 
-// Define the Project type
-interface Project {
+// Define the skill type
+interface Skill {
   id: string;
-  title: string;
+  name: string;
   slug: string;
+  score: number;
   image: string | null;
   createdAt: Date;
   updatedAt: Date;
@@ -23,18 +24,19 @@ interface Project {
 
 const page = async () => {
   try {
-    const project: Project[] = await prisma.project.findMany();
+    const skill: Skill[] = await prisma.skill.findMany();
 
     const deleteRow = async (id: string | number) => {
       "use server";
       const idString = typeof id === "number" ? id.toString() : id;
-      await prisma.project.delete({ where: { id: idString } });
+      await prisma.skill.delete({ where: { id: idString } });
     };
 
-    const transformedProject = project.map((item) => ({
+    const transformedSkill = skill.map((item) => ({
       id: item.id,
-      name: item.title,
+      name: item.name,
       slug: item.slug,
+      score: item.score,
       image: item.image,
       createdAt: item.createdAt.toLocaleString(),
       updatedAt: item.updatedAt.toLocaleString(),
@@ -53,26 +55,25 @@ const page = async () => {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>Project</BreadcrumbPage>
+              <BreadcrumbPage>Skills</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
         <h1 className="text-2xl font-bold flex items-center gap-2">
-          <FolderGit2 className="size-5" />
-          Projects
+          <Lightbulb className="size-5" />
+          Skill
         </h1>
         <TableLayout
-          data={transformedProject}
-          title="Project"
+          data={transformedSkill}
+          title="Skill"
           deleteRow={deleteRow}
         />
       </div>
     );
   } catch (error) {
     console.error("Error in page:", error);
-    return <div>Error loading projects.</div>;
+    return <div>Error loading skill.</div>;
   }
 };
 
 export default page;
-
