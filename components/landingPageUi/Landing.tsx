@@ -5,8 +5,9 @@ import dynamic from "next/dynamic";
 import SignIn from "@/components/layouts/SignIn";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 
-// Dynamically import the Hero component with ssr: false to disable SSR for this component
+// Dynamically import Hero and About components with ssr: false
 const Hero = dynamic(() => import("@/components/landingPageUi/Hero"), { ssr: false });
+const About = dynamic(() => import("@/components/landingPageUi/About"), { ssr: false });
 
 const Landing: React.FC = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -39,8 +40,8 @@ const Landing: React.FC = () => {
 
   return (
     <main className="flex flex-col items-center justify-center">
-      {/* Hero component will now only be rendered on the client side */}
-      <Hero />
+      <Hero />  {/* Dynamically loaded Hero component */}
+      <About />  {/* Dynamically loaded About component */}
       <ScrollToTop />
       <SignIn isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
     </main>
