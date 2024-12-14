@@ -61,7 +61,7 @@ const page = async () => {
         </Breadcrumb>
         <h1 className="text-2xl font-bold flex items-center gap-2">
           <Lightbulb className="size-5" />
-          Skill
+          Skills
         </h1>
         <TableLayout
           data={transformedSkill}
