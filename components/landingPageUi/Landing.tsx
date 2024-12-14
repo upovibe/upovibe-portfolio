@@ -1,21 +1,24 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";  // Import dynamic from next/dynamic
 import SignIn from "@/components/layouts/SignIn";
-import Hero from "@/components/landingPageUi/Hero";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 
+// Dynamically import the Hero component with ssr: false to disable SSR for this component
+const Hero = dynamic(() => import("@/components/landingPageUi/Hero"), { ssr: false });
 
-// Define a functional component without props
 const Landing: React.FC = () => {
   const [isModalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
-    const hash = window.location.hash;
-    if (hash) {
-      const target = document.getElementById(hash.replace("#", ""));
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
+    if (typeof window !== "undefined") {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.getElementById(hash.replace("#", ""));
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth" });
+        }
       }
     }
   }, []);
@@ -28,18 +31,16 @@ const Landing: React.FC = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("keydown", handleKeyPress);
-    return () => window.removeEventListener("keydown", handleKeyPress);
+    if (typeof window !== "undefined") {
+      window.addEventListener("keydown", handleKeyPress);
+      return () => window.removeEventListener("keydown", handleKeyPress);
+    }
   }, []);
 
   return (
     <main className="flex flex-col items-center justify-center">
-      {/* Commented out unused components */}
+      {/* Hero component will now only be rendered on the client side */}
       <Hero />
-      {/* <About /> */}
-      {/* <Skills skills={skills} /> */}
-      {/* <ProjectArchive projects={projects} /> */}
-      {/* <ContactMe contactlinks={contactlinks} /> */}
       <ScrollToTop />
       <SignIn isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
     </main>
