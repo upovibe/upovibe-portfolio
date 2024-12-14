@@ -5,20 +5,29 @@ import TableLayout from "@/components/dashboardUi/TableLayout";
 import {
   Breadcrumb,
   BreadcrumbItem,
-  // BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { FolderGit2 } from "lucide-react";
 
+// Define the Project type
+interface Project {
+  id: string;
+  title: string;
+  slug: string;
+  image: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 const page = async () => {
-  const project = await prisma.project.findMany();
+  const project: Project[] = await prisma.project.findMany();
 
   // Adjust deleteRow to accept both string and number
   const deleteRow = async (id: string | number) => {
     "use server";
-    const idString = typeof id === "number" ? id.toString() : id; // Convert number to string
+    const idString = typeof id === "number" ? id.toString() : id;
     await prisma.project.delete({ where: { id: idString } });
   };
 
@@ -56,7 +65,7 @@ const page = async () => {
       <TableLayout
         data={transformedProject}
         title="Project"
-        deleteRow={deleteRow} // Now accepts string | number
+        deleteRow={deleteRow}
       />
     </div>
   );
