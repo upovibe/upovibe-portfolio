@@ -7,7 +7,6 @@ import {
   LayoutDashboard,
   FolderGit2,
   // FilePenLine,
-  Settings,
   LogOut,
   PanelRightClose,
   PanelLeftClose,
@@ -26,9 +25,9 @@ interface SidebarProps {
 
 const menuItems = [
   { label: "Dashboard", icon: LayoutDashboard, href: "/dashboard" },
-  { label: "Projects", icon: FolderGit2, href: "/dashboard/project" },
+  { label: "Projects", icon: FolderGit2, href: "/dashboard/projects" },
   { label: "My Skills", icon: Lightbulb, href: "/dashboard/skills" },
-  { label: "My Contact", icon: Contact, href: "/dashboard/contactlink" },
+  { label: "My Contact", icon: Contact, href: "/dashboard/contactlinks" },
 ];
 
 const Sidebar: React.FC<SidebarProps> = ({ user }) => {
