@@ -26,7 +26,7 @@ const page = () => {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <Link href="/dashboard/project">Project</Link>
+            <Link href="/dashboard/project">Projects</Link>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbPage>Add new</BreadcrumbPage>
