@@ -24,7 +24,6 @@ interface Project {
 const page = async () => {
   try {
     const project: Project[] = await prisma.project.findMany();
-    console.log("Fetched Projects:", project);
 
     const deleteRow = async (id: string | number) => {
       "use server";
@@ -40,8 +39,6 @@ const page = async () => {
       createdAt: item.createdAt.toLocaleString(),
       updatedAt: item.updatedAt.toLocaleString(),
     }));
-
-    console.log("Transformed Projects:", transformedProject);
 
     return (
       <div>
