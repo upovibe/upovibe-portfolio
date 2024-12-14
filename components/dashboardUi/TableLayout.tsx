@@ -149,17 +149,37 @@ const TableLayout = <
       return {
         accessorKey: key,
         header: "Image",
-        cell: ({ row }: { row: Row<T> }) => (
-          <Image
-            src={row.getValue(key)}
-            alt={title}
-            width={20}
-            height={20}
-            className="size-10 object-cover rounded"
-          />
-        ),
+        cell: ({ row }: { row: Row<T> }) => {
+          const imageUrl = row.getValue(key);
+          console.log("Image URL:", imageUrl); // Debug the URL
+          return (
+            <Image
+              src={typeof imageUrl === "string" ? imageUrl : ""}
+              alt={title}
+              width={20}
+              height={20}
+              className="size-10 object-cover rounded"
+              unoptimized // Remove if optimization works after fixing
+            />
+          );
+        },
       };
     }
+    // if (key === "image") {
+    //   return {
+    //     accessorKey: key,
+    //     header: "Image",
+    //     cell: ({ row }: { row: Row<T> }) => (
+    //       <Image
+    //         src={row.getValue(key)}
+    //         alt={title}
+    //         width={20}
+    //         height={20}
+    //         className="size-10 object-cover rounded"
+    //       />
+    //     ),
+    //   };
+    // }
     return {
       accessorKey: key,
       header: key

@@ -9,8 +9,9 @@ import { Textarea } from "@/components/ui/textarea";
 import toast from "react-hot-toast";
 import Image from "next/image";
 import { truncateText } from "@/utils/truncateText";
-import { ImageIcon, X } from "lucide-react";
-import FroalaWysiwyg from "@/components/dashboardUi/FroalaWysiwyg";
+import { ImageIcon, X, Loader } from "lucide-react";
+import QuillEditor from "@/components/dashboardUi/QuillEditor";
+// import FroalaWysiwyg from "@/components/dashboardUi/FroalaWysiwyg";
 
 interface FormLayoutProps {
   fields: Array<
@@ -69,6 +70,7 @@ const FormLayout: React.FC<FormLayoutProps> = ({
   successRedirect,
 }) => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [imagePreview, setImagePreview] = useState<string | null>(
     initialData?.image || null
@@ -130,26 +132,65 @@ const FormLayout: React.FC<FormLayoutProps> = ({
     }
   };
 
+  // const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   setIsLoading(true);
+
+  //   const formData = new FormData(event.currentTarget);
+
+  //   // Add existing image back if no new image is selected
+  //   if (!formData.get("image") && initialData?.image) {
+  //     formData.append("image", initialData.image);
+  //   }
+
+  //   // Introduce a slight delay before validating the form
+  //   await new Promise((resolve) => setTimeout(resolve, 100));
+
+  //   if (!validateForm(formData)) {
+  //     toast.error("Please fill all required fields.");
+  //     setIsLoading(false);
+  //     return;
+  //   }
+
+  //   const result = await onSubmit(
+  //     formData,
+  //     ...([additionalSubmitArgs[0]] as [string | number])
+  //   );
+
+  //   if (result.success) {
+  //     toast.success("Form submitted successfully!");
+  //     if (successRedirect) {
+  //       router.push(successRedirect);
+  //     }
+  //   } else {
+  //     toast.error(`Error: ${result.error}`);
+  //   }
+
+  //   setIsLoading(false);
+  // };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsLoading(true);
+  
     const formData = new FormData(event.currentTarget);
-
+  
     // Add existing image back if no new image is selected
     if (!formData.get("image") && initialData?.image) {
       formData.append("image", initialData.image);
     }
-
+  
     if (!validateForm(formData)) {
       toast.error("Please fill all required fields.");
+      setIsLoading(false);
       return;
     }
-
-    // const result = await onSubmit(formData, ...additionalSubmitArgs);
+  
     const result = await onSubmit(
       formData,
       ...([additionalSubmitArgs[0]] as [string | number])
     );
-
+  
     if (result.success) {
       toast.success("Form submitted successfully!");
       if (successRedirect) {
@@ -158,6 +199,8 @@ const FormLayout: React.FC<FormLayoutProps> = ({
     } else {
       toast.error(`Error: ${result.error}`);
     }
+  
+    setIsLoading(false);
   };
 
   return (
@@ -222,7 +265,7 @@ const FormLayout: React.FC<FormLayoutProps> = ({
             )}
           </div>
         )}
-        {fields.includes("content") && (
+        {/* {fields.includes("content") && (
           <div className="grid w-full gap-1.5">
             <Label htmlFor="content">{labels.content}</Label>
             <FroalaWysiwyg
@@ -246,7 +289,29 @@ const FormLayout: React.FC<FormLayoutProps> = ({
               <p className="text-red-500 text-sm">{errors.content}</p>
             )}
           </div>
+        )} */}
+        <QuillEditor
+          initialValue={initialData?.content || ""}
+          onChange={(value: string) => {
+            // This ensures that the Quill content is kept in sync with the form
+            const hiddenInput = document.getElementById(
+              "hidden-content-input"
+            ) as HTMLInputElement;
+            if (hiddenInput) {
+              hiddenInput.value = value;
+            }
+          }}
+        />
+        <input
+          type="hidden"
+          id="hidden-content-input"
+          name="content"
+          defaultValue={initialData?.content || ""}
+        />
+        {errors.content && (
+          <p className="text-red-500 text-sm">{errors.content}</p>
         )}
+
         {fields.includes("tags") && (
           <div className="grid w-full gap-1.5">
             <Label htmlFor="tags">{labels.tags}</Label>
@@ -316,7 +381,6 @@ const FormLayout: React.FC<FormLayoutProps> = ({
                 <span>{labels.image}</span>
               </label>
             )}
-
             <input
               id="image"
               type="file"
@@ -327,8 +391,12 @@ const FormLayout: React.FC<FormLayoutProps> = ({
             />
           </div>
         )}
-        <Button type="submit" className="w-28 ml-auto">
-          Submit
+        <Button
+          type="submit"
+          className={`w-28 ml-auto ${isLoading ? "cursor-not-allowed" : ""}`}
+          disabled={isLoading}
+        >
+          {isLoading ? <Loader className="animate-spin" /> : "Submit"}
         </Button>
       </div>
     </form>

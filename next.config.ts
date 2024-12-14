@@ -9,8 +9,13 @@ const nextConfig: NextConfig = {
         hostname: "avatars.githubusercontent.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com", // Add Cloudinary's hostname here
+        pathname: "/**", // Allow all Cloudinary images
+      },
     ],
-    domains: [],
+    domains: ["res.cloudinary.com"], // Add Cloudinary to domains (optional but redundant if remotePatterns exists)
   },
 };
 
