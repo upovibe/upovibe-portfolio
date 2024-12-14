@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import dynamic from "next/dynamic";  // Import dynamic from next/dynamic
+import dynamic from "next/dynamic";
 import SignIn from "@/components/layouts/SignIn";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 
