@@ -180,6 +180,26 @@ const TableLayout = <
     //     ),
     //   };
     // }
+    // return {
+    //   accessorKey: key,
+    //   header: key
+    //     .replace(/([A-Z])/g, " $1")
+    //     .replace(/^./, (str) => str.toUpperCase()),
+    //   cell: ({ row }: { row: Row<T> }) => {
+    //     const cellValue = row.getValue(key);
+    //     if (typeof cellValue !== "string") {
+    //       return <div>Invalid data</div>;
+    //     }
+    //     const truncatedValue = truncateText(cellValue, 50);
+
+    //     return (
+    //       <div
+    //         className="truncate max-w-xs"
+    //         dangerouslySetInnerHTML={{ __html: truncatedValue }}
+    //       />
+    //     );
+    //   },
+    // };
     return {
       accessorKey: key,
       header: key
@@ -187,17 +207,25 @@ const TableLayout = <
         .replace(/^./, (str) => str.toUpperCase()),
       cell: ({ row }: { row: Row<T> }) => {
         const cellValue = row.getValue(key);
-        if (typeof cellValue !== "string") {
-          return <div>Invalid data</div>;
+  
+        // Check if the value is a number
+        if (typeof cellValue === "number") {
+          return <div>{cellValue}</div>;  // Display the number directly
         }
-        const truncatedValue = truncateText(cellValue, 50);
-
-        return (
-          <div
-            className="truncate max-w-xs"
-            dangerouslySetInnerHTML={{ __html: truncatedValue }}
-          />
-        );
+  
+        // Check if it's a valid string (e.g., it could be text, etc.)
+        if (typeof cellValue === "string") {
+          const truncatedValue = truncateText(cellValue, 50);
+          return (
+            <div
+              className="truncate max-w-xs"
+              dangerouslySetInnerHTML={{ __html: truncatedValue }}
+            />
+          );
+        }
+  
+        // If it's any other type (null, undefined, etc.), show a fallback message
+        return <div>Invalid data</div>;
       },
     };
   });

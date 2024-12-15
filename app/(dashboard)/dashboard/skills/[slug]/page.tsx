@@ -9,11 +9,10 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
-import { FolderGit2 } from "lucide-react";
+import { Lightbulb } from "lucide-react";
 import DeleteButton from "@/components/dashboardUi/DeleteButton";
-import { deleteProject } from "@/app/api/crude/formActions";
+import { deleteSkill } from "@/app/api/crude/formActions";
 import { Button } from "@/components/ui/button";
-import FroalaContentView from "@/components/ui/FroalaContentView";
 
 interface PageProps {
   params: Promise<{
@@ -21,18 +20,18 @@ interface PageProps {
   }>;
 }
 
-const page: React.FC<PageProps> = async ({ params }: PageProps) => {
+const page = async ({ params }: PageProps) => {
   const resolvedParams = await params;
-  const project = await prisma.project.findUnique({
+  const skill = await prisma.skill.findUnique({
     where: {
       slug: resolvedParams.slug,
     },
   });
 
-  if (!project) {
+  if (!skill) {
     return (
       <div>
-        <h1 className="text-  font-bold">Project Not Found</h1>
+        <h1 className="text-  font-bold">skill Not Found</h1>
       </div>
     );
   }
@@ -50,48 +49,42 @@ const page: React.FC<PageProps> = async ({ params }: PageProps) => {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <Link href="/dashboard/projects">project</Link>
+            <Link href="/dashboard/skills">Skills</Link>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>{project.slug}</BreadcrumbPage>
+            <BreadcrumbPage>{skill.name}</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
       <div className="flex flex-col w-full gap-3 border p-2 rounded-lg">
         <div className="flex flex-col gap-2">
           <h1 className="text-2xl font-bold flex items-center gap-2 capitalize">
-            <FolderGit2 className="size-5" />
-            {project.title}
+            <Lightbulb className="size-5" />
+            {skill.name}
           </h1>
-          <h2 className="border-t border-b py-1 text-xl">
-            {project.description}
-          </h2>
         </div>
         {/* Image Section */}
-        {project.image && (
-          <div className="w-full h-64 relative overflow-hidden rounded-lg border">
+        {skill.image && (
+          <div className="size-40 relative overflow-hidden rounded-lg border flex items-center justify-center">
             <Image
-              src={project.image}
-              alt={project.title}
+              src={skill.image}
+              alt={skill.name}
               fill
               className="object-cover"
             />
           </div>
         )}
-        <div className="prose max-w-none mb-6 overflow-hidden h-auto w-full">
-          <FroalaContentView model={project.content} />
-        </div>
         <div className="w-full flex items-center gap-2 justify-end">
           <Button className="bg-slate-400 px-2 py-1 rounded-md hover:bg-slate-700 hover:text-white duration-200 ease-linear ">
-            <Link href={`/dashboard/projects/${project.slug}/edit`}>Edit</Link>
+            <Link href={`/dashboard/skills/${skill.slug}/edit`}>Edit</Link>
           </Button>
           <DeleteButton
-            action={deleteProject}
-            args={[String(project.id)]}
+            action={deleteSkill}
+            args={[String(skill.id)]}
             buttonText="Delete"
-            successRedirect="/dashboard/projects"
-            errorMessage="Error deleting project"
+            successRedirect="/dashboard/skills"
+            errorMessage="Error deleting skill"
           />
         </div>
       </div>

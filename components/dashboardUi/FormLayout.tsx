@@ -172,25 +172,25 @@ const FormLayout: React.FC<FormLayoutProps> = ({
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsLoading(true);
-  
+
     const formData = new FormData(event.currentTarget);
-  
+
     // Add existing image back if no new image is selected
     if (!formData.get("image") && initialData?.image) {
       formData.append("image", initialData.image);
     }
-  
+
     if (!validateForm(formData)) {
       toast.error("Please fill all required fields.");
       setIsLoading(false);
       return;
     }
-  
+
     const result = await onSubmit(
       formData,
       ...([additionalSubmitArgs[0]] as [string | number])
     );
-  
+
     if (result.success) {
       toast.success("Form submitted successfully!");
       if (successRedirect) {
@@ -199,7 +199,7 @@ const FormLayout: React.FC<FormLayoutProps> = ({
     } else {
       toast.error(`Error: ${result.error}`);
     }
-  
+
     setIsLoading(false);
   };
 
@@ -290,28 +290,32 @@ const FormLayout: React.FC<FormLayoutProps> = ({
             )}
           </div>
         )} */}
-        <QuillEditor
-          initialValue={initialData?.content || ""}
-          onChange={(value: string) => {
-            // This ensures that the Quill content is kept in sync with the form
-            const hiddenInput = document.getElementById(
-              "hidden-content-input"
-            ) as HTMLInputElement;
-            if (hiddenInput) {
-              hiddenInput.value = value;
-            }
-          }}
-        />
-        <input
-          type="hidden"
-          id="hidden-content-input"
-          name="content"
-          defaultValue={initialData?.content || ""}
-        />
-        {errors.content && (
-          <p className="text-red-500 text-sm">{errors.content}</p>
+        {fields.includes("content") && (
+          <div className="grid w-full gap-1.5">
+            <Label htmlFor="content">{labels.content}</Label>
+            <QuillEditor
+              initialValue={initialData?.content || ""}
+              onChange={(value: string) => {
+                // This ensures that the Quill content is kept in sync with the form
+                const hiddenInput = document.getElementById(
+                  "hidden-content-input"
+                ) as HTMLInputElement;
+                if (hiddenInput) {
+                  hiddenInput.value = value;
+                }
+              }}
+            />
+            <input
+              type="hidden"
+              id="hidden-content-input"
+              name="content"
+              defaultValue={initialData?.content || ""}
+            />
+            {errors.content && (
+              <p className="text-red-500 text-sm">{errors.content}</p>
+            )}
+          </div>
         )}
-
         {fields.includes("tags") && (
           <div className="grid w-full gap-1.5">
             <Label htmlFor="tags">{labels.tags}</Label>

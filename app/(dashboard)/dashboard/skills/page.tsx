@@ -67,6 +67,7 @@ const page = async () => {
           data={transformedSkill}
           title="Skill"
           deleteRow={deleteRow}
+          baseUrl="/dashboard/skills"
         />
       </div>
     );

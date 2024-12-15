@@ -65,6 +65,7 @@ const page = async () => {
           data={transformedProject}
           title="Project"
           deleteRow={deleteRow}
+          baseUrl="/dashboard/projects"
         />
       </div>
     );

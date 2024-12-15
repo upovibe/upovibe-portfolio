@@ -11,7 +11,7 @@ import {
 import Link from "next/link";
 import { Tag } from "lucide-react";
 import FormLayout from "@/components/dashboardUi/FormLayout";
-import { editProject } from "@/app/api/crude/formActions";
+import { editSkill } from "@/app/api/crude/formActions";
 
 interface PageProps {
   params: Promise<{
@@ -21,16 +21,17 @@ interface PageProps {
 
 const page = async ({ params }: PageProps) => {
   const resolvedParams = await params;
-  const project = await prisma.project.findUnique({
+  const skill = await prisma.skill.findUnique({
     where: {
       slug: resolvedParams.slug,
     },
   });
 
-  if (!project || !project.id) {
+
+  if (!skill || !skill.id) {
     return (
       <div>
-        <h1 className="text-2xl font-bold">Project Not Found</h1>
+        <h1 className="text-2xl font-bold">skill Not Found</h1>
       </div>
     );
   }
@@ -47,12 +48,12 @@ const page = async ({ params }: PageProps) => {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <Link href="/dashboard/project">project</Link>
+            <Link href="/dashboard/skill">skill</Link>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <Link href={`/dashboard/projects/${project.slug}`}>
-              {project.slug}
+            <Link href={`/dashboard/skills/${skill.slug}`}>
+              {skill.slug}
             </Link>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
@@ -64,27 +65,23 @@ const page = async ({ params }: PageProps) => {
       <div className="flex flex-col gap-2">
         <h1 className="text-2xl font-bold flex items-center gap-2">
           <Tag className="size-5" />
-          Edit {project.slug}
+          Edit {skill.name}
         </h1>
         <FormLayout
-          fields={["title", "description", "content", "tags", "image"]}
+          fields={["name", "image", "score"]}
           labels={{
-            title: "Project Name",
-            description: "Project Description",
-            content: "Project",
-            tags: "Tags",
+            name: "skill Name",
+            score: "Score",
             image: "Image",
           }}
-          onSubmit={editProject}
-          additionalSubmitArgs={[project.id]}
+          onSubmit={editSkill}
+          additionalSubmitArgs={[skill.id]}
           initialData={{
-            title: project.title,
-            description: project.description,
-            content: project.content,
-            tags: project.tags,
-            image: project.image,
+            name: skill.name,
+            score: skill.score,
+            image: skill.image,
           }}
-          successRedirect={"/dashboard/projects"}
+          successRedirect={"/dashboard/skills"}
         />
       </div>
     </div>

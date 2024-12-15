@@ -41,7 +41,7 @@ const DashboardCard: React.FC<DashboardCardProps> = ({ projects, skills, contact
         iconClassName="text-blue-500"
         titleColor="text-gray-800"
         countColor="text-blue-600"
-        link="/dashboard/project"
+        link="/dashboard/projects"
       />
 
       {/* Skills Card */}
@@ -54,7 +54,7 @@ const DashboardCard: React.FC<DashboardCardProps> = ({ projects, skills, contact
         iconClassName="text-purple-500"
         titleColor="text-gray-800"
         countColor="text-purple-600"
-        link="/dashboard/skill"
+        link="/dashboard/skills"
       />
 
       {/* Skills Card */}
