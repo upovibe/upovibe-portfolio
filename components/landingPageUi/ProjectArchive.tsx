@@ -85,7 +85,7 @@ const ProjectArchive: React.FC<ProjectArchiveProps> = ({ projects }) => {
                 className="group relative transition-all ease-linear duration-200 shadow-lg rounded-b-xl"
                 variants={itemVariants}
               >
-                <Link href={`/project/${project.slug}`}>
+                <Link href={`/projects/${project.slug}`}>
                   <div className="overflow-hidden rounded-xl relative">
                     {/* Image container with overlay */}
                     <div className="relative">
@@ -115,7 +115,7 @@ const ProjectArchive: React.FC<ProjectArchiveProps> = ({ projects }) => {
         variant="ghost"
         className="ml-auto my-8 py-2 text-white bg-slate-100/20"
       >
-        <Link href="/project">View more</Link>
+        <Link href="/projects">View more</Link>
       </Button>
     </div>
   );

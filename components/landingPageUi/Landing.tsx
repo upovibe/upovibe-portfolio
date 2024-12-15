@@ -33,6 +33,7 @@ interface ContactLink {
   image: string | null;
   href: string;
 }
+
 interface PageProps {
   skills: Skill[];
   projects: Project[];

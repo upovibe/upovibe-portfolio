@@ -32,7 +32,7 @@ const ProjectsList: React.FC<ProjectsListProps> = ({ projects }) => {
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
         {projects.map((project) => (
           <Link
-            href={`/project/${project.slug}`} // Use slug instead of id
+            href={`/projects/${project.slug}`} // Use slug instead of id
             key={project.id}
             className="group relative transition-all ease-linear duration-200 shadow-lg after:absolute after:bg-slate-400 hover:after:bg-slate-400/50 after:h-1/3 after:left-1/2 after:rounded-xl after:w-11/12 after:top-[-15px] after:z-[-1] after:-translate-x-1/2 rounded-b-xl"
           >
