@@ -77,7 +77,7 @@ const ContactMe: React.FC<ContactMeProps> = ({ contactlinks }) => {
             contactlinks.map((contactLink) => (
               <motion.div
                 key={contactLink.id}
-                className="group relative bg-gray-500 p-1 px-2 h-12 pr-3 flex items-center justify-center rounded-full shadow-lg hover:shadow-none transition-all duration-200"
+                className="group relative bg-gray-800 p-1 px-2 h-12 pr-3 flex items-center justify-center rounded-full shadow-lg hover:shadow-none transition-all duration-200"
                 variants={itemVariants}
               >
                 <Link
@@ -97,7 +97,7 @@ const ContactMe: React.FC<ContactMeProps> = ({ contactlinks }) => {
                         className="min-w-8 max-w-8 transition-all duration-300"
                       />
                     )}
-                    <h2 className="text-center text-lg font-bold capitalize text-white dark:text-gray-100 transition-all duration-200 ease-linear">
+                    <h2 className="text-center text-lg font-bold capitalize text-white transition-all duration-200 ease-linear">
                       Contact me on {contactLink.name}
                     </h2>
                   </div>

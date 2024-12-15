@@ -6,7 +6,7 @@ import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false); // Controls menu visibility
-  const navItems = ["About", "Skills", "Projects", "Blog", "Contact"];
+  const navItems = ["About", "Skills", "Projects", "Contact"];
 
   // Handle navigation and smooth scrolling
   const handleNavClick = (e: React.MouseEvent, section: string) => {
@@ -45,9 +45,7 @@ const Navbar = () => {
 
       {/* Navigation Items */}
       <ul
-        className={`absolute md:static top-20 left-0 w-full md:w-auto bg-transparent shadow-md md:shadow-none flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8 text-lg font-medium z-50 transition-all duration-300 overflow-hidden ${
-          isOpen ? "block" : "hidden md:flex"
-        }`}
+        className={`absolute md:static top-20 left-0 w-full md:w-auto shadow-md md:shadow-none flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8 text-lg font-medium z-50 transition-all duration-300 overflow-hidden ${isOpen ? "block" : "hidden md:flex"} ${isOpen ? "bg-gray-950" : "bg-transparent"} `}
       >
         {navItems.map((item) => (
           <li key={item} className="group w-full md:w-auto">
