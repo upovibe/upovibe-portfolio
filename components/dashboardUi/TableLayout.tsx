@@ -102,29 +102,29 @@ const TableLayout = <
     }
   };
 
-  const deleteSelectedRows = async () => {
-    const selectedIds = Object.keys(rowSelection)
-      .filter((key) => rowSelection[key]) // Filter selected rows
-      .map((key) => (isNaN(Number(key)) ? key : Number(key))); // Preserve type (string or number)
+  // const deleteSelectedRows = async () => {
+  //   const selectedIds = Object.keys(rowSelection)
+  //     .filter((key) => rowSelection[key]) // Filter selected rows
+  //     .map((key) => (isNaN(Number(key)) ? key : Number(key))); // Preserve type (string or number)
 
-    if (selectedIds.length === 0) return;
+  //   if (selectedIds.length === 0) return;
 
-    try {
-      for (const id of selectedIds) {
-        await deleteRow(id); // Use ID as-is (string or number)
-      }
+  //   try {
+  //     for (const id of selectedIds) {
+  //       await deleteRow(id); // Use ID as-is (string or number)
+  //     }
 
-      setTableData((prev) =>
-        prev.filter((row) => !selectedIds.includes(row.id))
-      );
+  //     setTableData((prev) =>
+  //       prev.filter((row) => !selectedIds.includes(row.id))
+  //     );
 
-      setRowSelection({});
-      toast.success("Successfully deleted selected rows.");
-    } catch (error) {
-      console.error("Error deleting selected rows:", error);
-      toast.error("An error occurred while deleting.");
-    }
-  };
+  //     setRowSelection({});
+  //     toast.success("Successfully deleted selected rows.");
+  //   } catch (error) {
+  //     console.error("Error deleting selected rows:", error);
+  //     toast.error("An error occurred while deleting.");
+  //   }
+  // };
 
   // Dynamically infer columns from data
   const inferredColumns = Object.keys(data[0] || {}).map((key) => {
@@ -384,13 +384,13 @@ const TableLayout = <
                 ))}
             </DropdownMenuContent>
           </DropdownMenu>
-          <Button
+          {/* <Button
             variant="destructive"
             onClick={deleteSelectedRows}
             disabled={Object.keys(rowSelection).length === 0}
           >
             Delete Selected
-          </Button>
+          </Button> */}
         </div>
       </div>
       <div className="rounded-md border overflow-x-auto">
