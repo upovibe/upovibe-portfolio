@@ -29,7 +29,7 @@ const Navbar = () => {
     <nav className="flex items-center justify-between w-full container p-6 relative">
       {/* Brand Logo */}
       <Link href="/">
-        <h1 className="text-3xl font-extrabold tracking-tight text-gray-300">
+        <h1 className="text-3xl font-extrabold tracking-tight text-emerald-600">
           Promise Uzor
         </h1>
       </Link>
@@ -37,7 +37,7 @@ const Navbar = () => {
       {/* Hamburger Button for small screens */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="block md:hidden text-gray-400"
+        className="block md:hidden text-emerald-600"
         aria-label="Toggle Menu"
       >
         {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -55,11 +55,11 @@ const Navbar = () => {
           <li key={item} className="group w-full md:w-auto">
             <Link
               href={`#${item.toLowerCase()}`}
-              className="block w-full text-center md:w-auto md:text-left text-gray-300 transition-all duration-200 hover:scale-105 md:hover:scale-100 md:scale-100 md:hover:text-white"
+              className="block w-full text-center md:w-auto md:text-left text-emerald-500 transition-all duration-200 hover:scale-105 md:hover:scale-100 md:scale-100 md:hover:text-emerald-600"
               onClick={(e) => handleNavClick(e, item)}
             >
               {item}
-              <span className="block h-0.5 bg-gray-300 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+              <span className="block h-0.5 bg-emerald-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
             </Link>
           </li>
         ))}
