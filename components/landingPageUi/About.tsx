@@ -52,7 +52,7 @@ const About = () => {
 
         {/* Image Transition */}
         <motion.div
-          className="relative size-[10rem] w-auto sm:size-[12rem] flex items-center justify-center rounded-full border-8 border-gray-400 overflow-hidden shadow-2xl"
+          className="relative size-[10rem] sm:size-[12rem] flex items-center justify-center rounded-full border-8 border-gray-400 overflow-hidden shadow-2xl"
           variants={imageVariants}
           initial="hidden"
           whileInView="visible"
