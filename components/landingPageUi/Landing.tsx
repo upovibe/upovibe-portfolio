@@ -9,6 +9,9 @@ import ScrollToTop from "@/components/ui/ScrollToTop";
 const Hero = dynamic(() => import("@/components/landingPageUi/Hero"), { ssr: false });
 const About = dynamic(() => import("@/components/landingPageUi/About"), { ssr: false });
 const Skills = dynamic(() => import("@/components/landingPageUi/Skills"), { ssr: false });
+const ProjectArchive = dynamic(() => import("@/components/landingPageUi/ProjectArchive"), { ssr: false });
+const ContactMe = dynamic(() => import("@/components/landingPageUi/ContactMe"), { ssr: false });
+
 
 interface Skill {
   id: string;
@@ -16,12 +19,28 @@ interface Skill {
   image: string | null;
   score: number;
 }
+
+interface Project {
+  id: string;
+  slug: string;
+  title: string;
+  image: string | null;
+}
+
+interface ContactLink {
+  id: string;
+  name: string;
+  image: string | null;
+  href: string;
+}
 interface PageProps {
   skills: Skill[];
+  projects: Project[];
+  contactlinks: ContactLink[];
 }
 
 
-const Landing: React.FC<PageProps> = ({ skills }) => {
+const Landing: React.FC<PageProps> = ({ skills, projects, contactlinks }) => {
   const [isModalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
@@ -55,6 +74,8 @@ const Landing: React.FC<PageProps> = ({ skills }) => {
       <Hero />  {/* Dynamically loaded Hero component */}
       <About />  {/* Dynamically loaded About component */}
       <Skills skills={skills} />{/* Dynamically loaded Skills component */}
+      <ProjectArchive projects={projects} />{/* Dynamically loaded Projects component */}
+      <ContactMe contactlinks={contactlinks} />{/* Dynamically loaded Contact LInks component */}
       <ScrollToTop />
       <SignIn isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
     </main>
