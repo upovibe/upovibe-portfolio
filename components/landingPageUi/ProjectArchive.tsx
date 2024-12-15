@@ -70,7 +70,7 @@ const ProjectArchive: React.FC<ProjectArchiveProps> = ({ projects }) => {
               .map((_, index) => (
                 <div
                   key={index}
-                  className="relative flex flex-col items-center justify-center bg-gray-800 dark:bg-gray-600 rounded-xl group transition-all ease-linear after:duration-200 shadow-lg  after:absolute after:bg-gray-500 hover:after:bg-gray-500/50 after:h-1/3 after:left-1/2 after:rounded-xl after:w-11/12 after:top-[-15px] after:z-[-1] after:-translate-x-1/2 rounded-b-xl"
+                  className="relative flex flex-col items-center justify-center bg-gray-800 dark:bg-gray-600 rounded-xl group transition-all ease-linear after:duration-200 shadow-lg  after:absolute after:bg-gray-500 hover:after:bg-gray-500/50 after:h-1/3 after:left-1/2 after:rounded-xl after:w-11/12 after:top-[-15px] hover:after:top-[-20px] after:z-[-1] after:-translate-x-1/2 rounded-b-xl"
                 >
                   {/* Skeleton Image */}
                   <Skeleton className="w-full h-40 rounded-xl" />
@@ -83,7 +83,7 @@ const ProjectArchive: React.FC<ProjectArchiveProps> = ({ projects }) => {
               <motion.div
                 key={project.id}
                 variants={itemVariants}
-                className="group relative transition-all ease-linear after:duration-200 shadow-lg  after:absolute after:bg-emerald-500 hover:after:bg-emerald-500/50 after:h-1/3 after:left-1/2 after:rounded-xl after:w-11/12 after:top-[-15px] after:z-[-1] after:-translate-x-1/2 rounded-b-xl"
+                className="group relative transition-all ease-linear after:duration-200 shadow-lg  after:absolute after:bg-emerald-500 hover:after:bg-emerald-500/50 after:h-1/3 after:left-1/2 after:rounded-xl after:w-11/12 after:top-[-15px] hover:after:top-[-20px] after:z-[-1] after:-translate-x-1/2 rounded-b-xl"
               >
                 <Link href={`/projects/${project.slug}`}>
                   <div className="overflow-hidden rounded-xl relative">
