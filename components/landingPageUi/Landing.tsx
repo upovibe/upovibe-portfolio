@@ -8,8 +8,20 @@ import ScrollToTop from "@/components/ui/ScrollToTop";
 // Dynamically import Hero and About components with ssr: false
 const Hero = dynamic(() => import("@/components/landingPageUi/Hero"), { ssr: false });
 const About = dynamic(() => import("@/components/landingPageUi/About"), { ssr: false });
+const Skills = dynamic(() => import("@/components/landingPageUi/Skills"), { ssr: false });
 
-const Landing: React.FC = () => {
+interface Skill {
+  id: string;
+  name: string;
+  image: string | null;
+  score: number;
+}
+interface PageProps {
+  skills: Skill[];
+}
+
+
+const Landing: React.FC<PageProps> = ({ skills }) => {
   const [isModalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
@@ -42,6 +54,7 @@ const Landing: React.FC = () => {
     <main className="flex flex-col items-center justify-center">
       <Hero />  {/* Dynamically loaded Hero component */}
       <About />  {/* Dynamically loaded About component */}
+      <Skills skills={skills} />{/* Dynamically loaded Skills component */}
       <ScrollToTop />
       <SignIn isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
     </main>
