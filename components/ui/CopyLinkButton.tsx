@@ -21,8 +21,8 @@ const CopyLinkButton = () => {
   };
 
   return (
-    <Button variant="ghost" className="p-2 lg:py-1 text-white bg-slate-50/5" onClick={copyLink}>
-      <Link className="mr-2" />
+    <Button variant="ghost" className="p-2 lg:py-1 text-white bg-gray-50/5 w-fit" onClick={copyLink}>
+      <Link className="lg:mr-2" />
       <span className="hidden lg:inline-flex">Copy Link</span>
     </Button>
   );

@@ -51,25 +51,25 @@ const page: React.FC<PageProps> = async ({ params }: PageProps) => {
   const tags = project.tags.split(",");
 
   return (
-    <div className="w-full h-auto container mx-auto py-12 pb-32 px-4 flex flex-col lg:flex-row justify-between gap-14">
+    <div className="w-full h-auto container mx-auto py-10 pb-32 px-4 flex flex-col lg:flex-row justify-between gap-14">
       {/* Main Content */}
       <div className="w-full lg:w-7/12 p-4 border-2 border-gray-200/20 rounded-xl bg-gray-800/50 backdrop-blur-md shadow-lg">
         {project.image && (
-          <div className="w-full flex min-h-[10rem] rounded-lg items-center justify-center overflow-hidden shadow">
+          <div className="w-full flex min-h-[30em] h-[30rem] rounded-lg items-center justify-center overflow-hidden shadow">
             <Image
               src={project.image}
               alt={project.title}
               width={1000}
               height={500}
-              className="object-center"
+              className="object-cover rounded-xl"
             />
           </div>
         )}
 
-        <h1 className="text-4xl text-gray-100 font-bold my-4 capitalize">
+        <h1 className="text-4xl text-gray-100 font-bold my-6 capitalize">
           {project.title}
         </h1>
-        <p className="text-lg text-gray-200 mb-4 border-l-4 border-gray-500 pl-4 my-6 capitalize">
+        <p className="text-lg text-gray-200 mb-4 border-l-4 border-emerald-600 pl-4 my-6 capitalize">
           {project.description}
         </p>
         <div className="flex items-center justify-between flex-wrap gap-2 my-4 border-t border-b border-gray-500 py-3">
@@ -77,7 +77,7 @@ const page: React.FC<PageProps> = async ({ params }: PageProps) => {
             {tags.map((tag, index) => (
               <span
                 key={index}
-                className="bg-blue-100 text-blue-600 text-sm font-semibold py-0.5 px-3 rounded-full"
+                className="bg-emerald-800 text-white text-sm font-semibold py-0.5 px-3 rounded-full"
               >
                 {tag.trim()}
               </span>
