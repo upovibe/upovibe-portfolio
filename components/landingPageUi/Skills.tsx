@@ -47,9 +47,9 @@ const Skills: React.FC<SkillsProps> = ({ skills }) => {
   return (
     <div
       id="skills"
-      className="h-auto flex flex-col items-center justify-center container mx-auto py-40 px-6 gap-8 border-b border-gray-200/20"
+      className="h-auto flex flex-col items-center justify-center container mx-auto p-10 py-[10rem] gap-8 border-b border-gray-200/20"
     >
-      <h3 className="text-2xl font-bold text-white dark:text-gray-200 mb-10 border-b-2 border-gray-200 pb-2 text-left">
+      <h3 className="text-2xl font-bold text-emerald-400  mb-10 border-b-2 border-emerald-400 pb-2">
         Skills
       </h3>
       <div className="grid grid-cols-3 sm:grid-cols-6 lg:grid-cols-8 justify gap-10 w-full">
@@ -106,7 +106,7 @@ const Skills: React.FC<SkillsProps> = ({ skills }) => {
                     {skill.name}
                   </h3>
                   {/* Progress Bar */}
-                  <div className="w-full bg-gray-600 dark:bg-gray-700 shadow-inner border rounded-full h-2 overflow-hidden">
+                  <div className="w-[60px] bg-gray-600 dark:bg-gray-700 shadow-inner border rounded-full h-2 overflow-hidden">
                     <motion.div
                       className={`${color} h-full rounded-full`}
                       custom={percentage}

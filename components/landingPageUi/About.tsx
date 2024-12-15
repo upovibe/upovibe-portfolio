@@ -25,26 +25,34 @@ const About = () => {
 
   const imageVariants = {
     hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 1, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 1, ease: "easeOut" },
+    },
   };
 
   return (
     <motion.div
       id="about"
-      className="h-auto flex flex-col-reverse lg:flex-row items-center container mx-auto py-60 px-6 border-b border-gray-200/20 relative justify-between gap-28"
+      className="h-auto flex flex-col-reverse lg:flex-row items-center container mx-auto p-10 py-[10rem] border-b border-gray-200/20 relative justify-between gap-28"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }} // Trigger animation when 20% of the section is visible
-      variants={{ hidden: {}, visible: {} }} // Wrapper variants (if needed)
+      viewport={{ once: true, amount: 0.2 }}
+      variants={{ hidden: {}, visible: {} }}
     >
       {/* Left Side (Image & Links) */}
       <div className="w-full lg:w-4/12 flex flex-col items-center relative">
         {/* Lottie Animation */}
-        <Lottie animationData={AboutData} loop={true} className="absolute max-w-sm -top-24" />
+        <Lottie
+          animationData={AboutData}
+          loop={true}
+          className="absolute max-w-sm -top-24"
+        />
 
         {/* Image Transition */}
         <motion.div
-          className="relative size-[200px] flex items-center justify-center rounded-full border-8 border-gray-500 overflow-hidden shadow-xl"
+          className="relative size-[10rem] sm:size-[12rem] flex items-center justify-center rounded-full border-8 border-gray-400 overflow-hidden shadow-2xl"
           variants={imageVariants}
           initial="hidden"
           whileInView="visible"
@@ -57,7 +65,7 @@ const About = () => {
               alt={`Portrait ${index + 1}`}
               width={150}
               height={150}
-              className={`absolute z-10 size-[170px] rounded-full transition-all duration-500 ease-in-out ${
+              className={`absolute z-10 size-[8rem] sm:size-[10rem] rounded-full transition-all duration-500 ease-in-out ${
                 index === currentIndex
                   ? "opacity-100 translate-x-0"
                   : "opacity-0 translate-x-10"
@@ -75,20 +83,23 @@ const About = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
       >
-        <h2 className="text-3xl font-bold text-white dark:text-gray-200 mb-4 border-b-2 border-gray-200 pb-2">
+        <h2 className="text-3xl font-bold text-emerald-400 mb-4 pb-2 w-fit border-b-2 border-emerald-400 mx-auto lg:mx-0">
           About Me
         </h2>
 
         {/* First Paragraph */}
-        <p className="text-lg text-gray-300 dark:text-gray-400 mb-4">
-          I’m a <strong>Fullstack Developer</strong> passionate about creating
-          efficient, scalable, and user-friendly web solutions. With experience
-          in both <strong>frontend</strong> and <strong>backend</strong>{" "}
-          development, I build seamless applications that deliver real value.
+        <p className="text-lg text-gray-300 mb-4">
+          I’m a{" "}
+          <strong className="text-emerald-400">Fullstack Developer</strong>{" "}
+          passionate about creating efficient, scalable, and user-friendly web
+          solutions. With experience in both{" "}
+          <strong className="text-emerald-400">frontend</strong> and{" "}
+          <strong className="text-emerald-400">backend</strong> development, I
+          build seamless applications that deliver real value.
         </p>
 
         {/* Second Paragraph */}
-        <p className="text-lg text-gray-300 dark:text-gray-400">
+        <p className="text-lg text-gray-300">
           I’m open to collaboration and always ready to contribute to innovative
           projects. Currently seeking opportunities to join a dynamic team or
           work on exciting freelance ventures.

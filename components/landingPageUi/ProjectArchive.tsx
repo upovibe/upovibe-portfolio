@@ -52,13 +52,13 @@ const ProjectArchive: React.FC<ProjectArchiveProps> = ({ projects }) => {
   return (
     <div
       id="projects"
-      className="h-auto flex flex-col items-center container mx-auto py-40 px-6 border-b border-gray-200/20"
+      className="h-auto flex flex-col items-center container mx-auto p-10 py-[10rem] border-b border-gray-200/20"
     >
-      <h3 className="text-2xl font-bold text-white dark:text-gray-200 mb-14 border-b-2 border-gray-100 pb-2 text-left">
+      <h3 className="text-2xl font-bold text-emerald-400  mb-10 border-b-2 border-emerald-400 pb-2">
         Projects
       </h3>
       <motion.div
-        className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4"
+        className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-2"
         variants={containerVariants}
         initial="hidden"
         animate={loading ? "hidden" : "visible"}
@@ -70,7 +70,7 @@ const ProjectArchive: React.FC<ProjectArchiveProps> = ({ projects }) => {
               .map((_, index) => (
                 <div
                   key={index}
-                  className="relative flex flex-col items-center justify-center bg-gray-800 dark:bg-gray-600 rounded-xl p-4"
+                  className="relative flex flex-col items-center justify-center bg-gray-800 dark:bg-gray-600 rounded-xl"
                 >
                   {/* Skeleton Image */}
                   <Skeleton className="w-full h-40 rounded-xl" />
@@ -82,7 +82,7 @@ const ProjectArchive: React.FC<ProjectArchiveProps> = ({ projects }) => {
             projects.map((project) => (
               <motion.div
                 key={project.id}
-                className="group relative transition-all ease-linear duration-200 shadow-lg rounded-b-xl"
+                className="group relative transition-all ease-linear duration-200 shadow-lg"
                 variants={itemVariants}
               >
                 <Link href={`/projects/${project.slug}`}>
@@ -101,7 +101,7 @@ const ProjectArchive: React.FC<ProjectArchiveProps> = ({ projects }) => {
                     </div>
 
                     {/* Title */}
-                    <h2 className="absolute -bottom-2 left-0 right-0 py-4 px-2 bg-black/20 group-hover:bg-transparent text-slate-200 group-hover:text-white transition-colors duration-200 text-xl font-bold mb-2 truncate capitalize">
+                    <h2 className="absolute -bottom-2 left-0 right-0 py-4 px-2 bg-gradient-to-t from-black/60 to-transparent group-hover:bg-transparent text-slate-200 group-hover:text-white transition-colors duration-200 text-xl font-bold mb-2 truncate capitalize">
                       {truncateText(project.title)}
                     </h2>
                   </div>
@@ -111,12 +111,14 @@ const ProjectArchive: React.FC<ProjectArchiveProps> = ({ projects }) => {
       </motion.div>
 
       {/* Corrected Link component for navigation */}
-      <Button
-        variant="ghost"
-        className="ml-auto my-8 py-2 text-white bg-slate-100/20"
-      >
-        <Link href="/projects">View more</Link>
-      </Button>
+      <motion.div variants={itemVariants} className="ml-auto my-8">
+        <Button
+          variant="ghost"
+          className="text-emerald-400 bg-emerald-400/10 hover:bg-emerald-400/20 hover:text-white transition-all duration-200"
+        >
+          <Link href="/projects">View more</Link>
+        </Button>
+      </motion.div>
     </div>
   );
 };

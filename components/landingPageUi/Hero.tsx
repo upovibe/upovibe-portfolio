@@ -4,6 +4,8 @@ import React from "react";
 import Lottie from "lottie-react";
 import HeroData from "@/public/animations/Hero.json";
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Download } from "lucide-react";
 
 function Hero() {
   // Animation variants for the text and animation
@@ -26,23 +28,36 @@ function Hero() {
       id="hero"
       initial="hidden"
       animate="visible"
-      className="h-screen border-b border-gray-200/20 w-full container flex flex-col lg:flex-row items-center lg:justify-between pt-20 pb-10 px-6 gap-10"
+      className="border-b border-gray-200/20 w-full container flex flex-col lg:flex-row items-center lg:justify-between p-10 py-20 gap-10"
     >
       {/* Left Side (Text Content) */}
       <motion.div
         className="w-full lg:w-1/2 text-center lg:text-left"
         variants={textVariants}
       >
-        <h3 className="text-sm font-semibold text-gray-400 uppercase mb-2">
-          Fullstack Developer
-        </h3>
+        <h3 className="text-lg font-semibold text-gray-400 mb-2">Hi there</h3>
         <h1 className="text-3xl font-extrabold text-white mb-4 lg:text-4xl">
-          Promise Uzor Okwudiri
+          I am <span className="text-emerald-500">Promise</span>
         </h1>
-        <p className="text-lg text-gray-300">
-          Crafting impactful web solutions with modern technologies. Ready to
-          collaborate, innovate, and grow with forward-thinking teams.
+        <p className="text-gray-300 mb-5">
+          Crafting impactful solutions with modern technologies. Ready to{" "}
+          <strong className="text-emerald-400 border-b-2 border-emerald-400">
+            collaborate
+          </strong>
+          ,{" "}
+          <strong className="text-emerald-400 border-b-2 border-emerald-400">
+            innovate
+          </strong>
+          , and{" "}
+          <strong className="text-emerald-400 border-b-2 border-emerald-400">
+            grow
+          </strong>{" "}
+          with forward-thinking teams.
         </p>
+        <Button className="bg-emerald-500 hover:bg-emerald-700 text-white py-2 px-4 rounded-md flex items-center gap-2 mx-auto lg:mx-0">
+          <Download size={18} className="text-white" />
+          Download CV
+        </Button>
       </motion.div>
 
       {/* Right Side (Lottie Animation) */}
@@ -50,7 +65,11 @@ function Hero() {
         className="w-full lg:w-4/12 flex justify-center items-center"
         variants={animationVariants}
       >
-        <Lottie animationData={HeroData} loop={true} className="max-w-lg lg:max-w-full" />
+        <Lottie
+          animationData={HeroData}
+          loop={true}
+          className="max-w-lg lg:max-w-full"
+        />
       </motion.div>
     </motion.div>
   );

@@ -51,9 +51,9 @@ const ContactMe: React.FC<ContactMeProps> = ({ contactlinks }) => {
       id="contact"
       className="h-auto flex flex-col items-center container mx-auto py-40 px-6 gap-10"
     >
-      <h2 className="text-2xl font-bold text-white dark:text-gray-200 mb-4 border-b-2 border-gray-200 pb-2">
+      <h3 className="text-2xl font-bold text-emerald-400  mb-10 border-b-2 border-emerald-400 pb-2">
         Contact Me
-      </h2>
+      </h3>
       <motion.div
         className="w-full flex flex-col flex-wrap md:flex-row items-center justify-between gap-4"
         variants={containerVariants}
@@ -77,7 +77,7 @@ const ContactMe: React.FC<ContactMeProps> = ({ contactlinks }) => {
             contactlinks.map((contactLink) => (
               <motion.div
                 key={contactLink.id}
-                className="group relative bg-gray-800 p-1 px-2 h-12 pr-3 flex items-center justify-center rounded-full shadow-lg hover:shadow-none transition-all duration-200"
+                className="group relative bg-gray-800 p-1 px-2 h-12 pr-3 flex items-center justify-center shadow-xl rounded-full hover:shadow-emerald-500 hover:shadow transition-all duration-300 ease-linear"
                 variants={itemVariants}
               >
                 <Link
@@ -86,7 +86,6 @@ const ContactMe: React.FC<ContactMeProps> = ({ contactlinks }) => {
                   rel="noopener noreferrer"
                   className="relative flex items-center gap-3"
                 >
-                  <div className="absolute top-0 left-0 w-full h-full rounded-full border-2 border-transparent group-hover:animate-shine"></div>
                   <div className="relative flex items-center gap-3">
                     {contactLink.image !== null && (
                       <Image
@@ -98,7 +97,7 @@ const ContactMe: React.FC<ContactMeProps> = ({ contactlinks }) => {
                       />
                     )}
                     <h2 className="text-center text-lg font-bold capitalize text-white transition-all duration-200 ease-linear">
-                      Contact me on {contactLink.name}
+                      {contactLink.name}
                     </h2>
                   </div>
                 </Link>

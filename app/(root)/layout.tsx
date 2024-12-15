@@ -5,7 +5,7 @@ export default function Layout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-<main className="min-h-screen flex flex-col items-center justify-between bg-gradient-to-t from-gray-950 via-gray-900 to-gray-950 ">
+<main className="min-h-screen flex flex-col items-center justify-betwee ">
   <Header />
   {children}
   <Footer/>

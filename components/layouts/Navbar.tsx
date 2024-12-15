@@ -45,7 +45,11 @@ const Navbar = () => {
 
       {/* Navigation Items */}
       <ul
-        className={`absolute md:static top-20 left-0 w-full md:w-auto shadow-md md:shadow-none flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8 text-lg font-medium z-50 transition-all duration-300 overflow-hidden ${isOpen ? "block" : "hidden md:flex"} ${isOpen ? "bg-gray-950" : "bg-transparent"} `}
+        className={`absolute md:static top-20 left-0 w-full md:w-auto shadow-md md:shadow-none flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8 text-lg font-medium z-50 transition-all duration-300 overflow-hidden ${
+          isOpen
+            ? "block bg-gray-950/20 backdrop-blur-md shadow-xl"
+            : "hidden md:flex bg-transparent"
+        }`}
       >
         {navItems.map((item) => (
           <li key={item} className="group w-full md:w-auto">
