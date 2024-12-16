@@ -16,6 +16,7 @@ const ContactMe = dynamic(() => import("@/components/landingPageUi/ContactMe"), 
 interface Skill {
   id: string;
   name: string;
+  href: string;
   image: string | null;
   score: number;
 }
