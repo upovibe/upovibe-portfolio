@@ -9,6 +9,7 @@ import { uploadToCloudinary } from "@/config/cloudinary";
 // Create a new project
 export const createProject = async (formData: FormData) => {
   const title = formData.get("title") as string | null;
+  const href = (formData.get("href") as string | null) || "#";
   const description = formData.get("description") as string | null;
   const imageFile = formData.get("image") as File | null;
   const tags = formData.get("tags") as string | string[] | null;
@@ -48,6 +49,7 @@ export const createProject = async (formData: FormData) => {
     await prisma.project.create({
       data: {
         title,
+        href,
         description,
         slug: title.replace(/\s+/g, "_").toLowerCase(),
         image: imageUrl,
@@ -69,6 +71,7 @@ export const createProject = async (formData: FormData) => {
 // Edit the project
 export const editProject = async (formData: FormData, id: string | number) => {
   const title = formData.get("title") as string;
+  const href = (formData.get("href") as string | null) || "#";
   const description = formData.get("description") as string;
   const imageFile = formData.get("image") as File | null;
   const tags = formData.get("tags") as string | null;
@@ -108,6 +111,7 @@ export const editProject = async (formData: FormData, id: string | number) => {
       where: { id: parsedId },
       data: {
         title,
+        href,
         description,
         slug: title.replace(/\s+/g, "_").toLowerCase(),
         image: imageUrl || existingProject.image, 

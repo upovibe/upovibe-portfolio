@@ -16,6 +16,7 @@ generator client {
 model Project {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   title       String
+  href        String
   description String
   slug        String   @unique
   image       String?

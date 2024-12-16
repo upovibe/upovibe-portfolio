@@ -67,9 +67,10 @@ const page = async ({ params }: PageProps) => {
           Edit {project.slug}
         </h1>
         <FormLayout
-          fields={["title", "description", "content", "tags", "image"]}
+          fields={["title", "description", "href", "content", "tags", "image"]}
           labels={{
             title: "Project Name",
+            href: "A link to full project or Demo",
             description: "Project Description",
             content: "Project",
             tags: "Tags",
@@ -79,6 +80,7 @@ const page = async ({ params }: PageProps) => {
           additionalSubmitArgs={[project.id]}
           initialData={{
             title: project.title,
+            href: project.href,
             description: project.description,
             content: project.content,
             tags: project.tags,
