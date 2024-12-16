@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
 import { motion } from "framer-motion";
 import {
@@ -14,6 +15,7 @@ import {
 interface Skill {
   id: string;
   name: string;
+  href: string;
   image: string | null;
   score: number;
 }
@@ -97,16 +99,24 @@ const Skills: React.FC<SkillsProps> = ({ skills }) => {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.5 }}
               >
-                {/* Skill Icon */}
-                {skill.image !== null && (
-                  <Image
-                    src={skill.image}
-                    alt={`${skill.name} Icon`}
-                    width={50}
-                    height={50}
-                    className="rounded-md"
-                  />
-                )}
+                <Link
+                  href={skill.href || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  passHref
+                >
+                  {/* Skill Icon */}
+                  {skill.image !== null && (
+                    <Image
+                      src={skill.image}
+                      alt={`${skill.name} Icon`}
+                      width={50}
+                      height={50}
+                      className="rounded-md"
+                    />
+                  )}
+                </Link>
+
                 {/* Skill Name */}
                 <h3 className="text-lg font-semibold text-gray-200 dark:text-gray-400">
                   {skill.name}

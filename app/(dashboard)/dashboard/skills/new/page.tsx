@@ -38,9 +38,10 @@ const page = () => {
           Add new skill
         </h1>
         <FormLayout
-          fields={["name", "score", "image"]}
+          fields={["name", "href", "score", "image"]}
           labels={{
             name: "Name",
+            href: "Link",
             score: "Score",
             image: "Image",
           }}

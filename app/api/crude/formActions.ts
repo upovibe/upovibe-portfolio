@@ -148,7 +148,8 @@ export const deleteProject = async (id: string | number) => {
 
 export const createSkill = async (formData: FormData) => {
   const name = formData.get("name") as string | null;
-  const scoreValue = formData.get("score"); // It can be a string or null
+  const href = (formData.get("href") as string | null) || "#";
+  const scoreValue = formData.get("score");
   const imageFile = formData.get("image") as File | null;
 
   if (!name || !scoreValue) {
@@ -193,6 +194,7 @@ export const createSkill = async (formData: FormData) => {
     await prisma.skill.create({
       data: {
         name,
+        href,
         slug: name.replace(/\s+/g, "_").toLowerCase(),
         image: imageUrl,
         score,
@@ -212,7 +214,8 @@ export const createSkill = async (formData: FormData) => {
 // Edit the skill
 export const editSkill = async (formData: FormData, id: string | number) => {
   const name = formData.get("name") as string;
-  const scoreValue = formData.get("score"); // It can be a string or null
+  const href = (formData.get("href") as string | null) || "#";
+  const scoreValue = formData.get("score");
   const imageFile = formData.get("image") as File | null;
 
   if (!name || !scoreValue) {
@@ -267,6 +270,7 @@ export const editSkill = async (formData: FormData, id: string | number) => {
       where: { id: String(id) },
       data: {
         name,
+        href,
         slug: name.replace(/\s+/g, "_").toLowerCase(),
         image: imageUrl,
         score,

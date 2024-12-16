@@ -68,9 +68,10 @@ const page = async ({ params }: PageProps) => {
           Edit {skill.name}
         </h1>
         <FormLayout
-          fields={["name", "image", "score"]}
+          fields={["name", "href", "image", "score"]}
           labels={{
             name: "skill Name",
+            href: "Link",
             score: "Score",
             image: "Image",
           }}
@@ -78,6 +79,7 @@ const page = async ({ params }: PageProps) => {
           additionalSubmitArgs={[skill.id]}
           initialData={{
             name: skill.name,
+            href: skill.href,
             score: skill.score,
             image: skill.image,
           }}
