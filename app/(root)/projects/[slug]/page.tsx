@@ -131,7 +131,7 @@ const page: React.FC<PageProps> = async ({ params }: PageProps) => {
               <>
                 <Link
                   key={otherProject.id}
-                  href={`/project/${otherProject.slug}`}
+                  href={`/projects/${otherProject.slug}`}
                   className="flex gap-4 p-2 hover:bg-gray-100/30 transition duration-200 rounded-lg"
                 >
                   {otherProject.image && (
