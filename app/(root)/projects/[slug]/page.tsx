@@ -150,7 +150,7 @@ const page: React.FC<PageProps> = async ({ params }: PageProps) => {
                     <p className="text-sm text-gray-500">{otherCreatedAt}</p>
                   </div>
                 </Link>
-                <Separator className="" />
+                <Separator className="bg-gray-600" />
               </>
             );
           })}
