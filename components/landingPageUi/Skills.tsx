@@ -104,6 +104,7 @@ const Skills: React.FC<SkillsProps> = ({ skills }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   passHref
+                  className="hover:animate-pulse"
                 >
                   {/* Skill Icon */}
                   {skill.image !== null && (

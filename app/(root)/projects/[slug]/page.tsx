@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { prisma } from "@/prisma";
 import { format } from "date-fns";
-import { Clock12 } from "lucide-react";
+import { Clock12, View } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import CopyLinkButton from "@/components/ui/CopyLinkButton";
 import FroalaContentView from "@/components/ui/FroalaContentView";
@@ -55,7 +55,7 @@ const page: React.FC<PageProps> = async ({ params }: PageProps) => {
       {/* Main Content */}
       <div className="w-full lg:w-7/12 p-4 border-2 border-gray-200/20 rounded-xl bg-gray-800/50 backdrop-blur-md shadow-lg">
         {project.image && (
-          <div className="w-full flex min-h-[30em] h-[30rem] rounded-lg items-center justify-center overflow-hidden shadow">
+          <div className="w-full flex rounded-lg items-center justify-center overflow-hidden shadow">
             <Image
               src={project.image}
               alt={project.title}
@@ -66,9 +66,21 @@ const page: React.FC<PageProps> = async ({ params }: PageProps) => {
           </div>
         )}
 
-        <h1 className="text-4xl text-gray-100 font-bold my-6 capitalize">
-          {project.title}
-        </h1>
+        <div className="flex items-center w-full justify-between">
+          <h1 className="text-4xl text-gray-100 font-bold my-6 capitalize">
+            {project.title}
+          </h1>
+          <Link
+            href={project.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            passHref
+            className="p-1 lg:px-2 bg-emerald-400 text-gray-800 rounded-lg flex items-center gap-1 hover:shadow-lg shadow-emerald-300 transition-all animate-bounce duration-1000 ease-in-out delay-200"
+          >
+            <View className="size-5" />{" "}
+            <span className="hidden lg:block">View Demo</span>
+          </Link>
+        </div>
         <p className="text-lg text-gray-200 mb-4 border-l-4 border-emerald-600 pl-4 my-6 capitalize">
           {project.description}
         </p>
