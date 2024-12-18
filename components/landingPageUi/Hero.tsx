@@ -6,6 +6,7 @@ import HeroData from "@/public/animations/Hero.json";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
+import Link from "next/link";
 
 function Hero() {
   // Animation variants for the text and animation
@@ -54,9 +55,15 @@ function Hero() {
           </strong>{" "}
           with forward-thinking teams.
         </p>
-        <Button className="bg-emerald-500 hover:bg-emerald-700 text-white py-2 px-4 rounded-md flex items-center gap-2 mx-auto lg:mx-0">
-          <Download size={18} className="text-white" />
-          Download CV
+        <Button className="bg-emerald-500 hover:bg-emerald-700 text-white py-2 px-4 rounded-md flex items-center gap-2 mx-auto lg:mx-0 transition-all duration-200 ease-linear w-fit group">
+          <Link
+            href="https://raw.githubusercontent.com/upovibe/upovibe/main/CV.pdf"
+            download
+            className="flex items-center gap-2"
+          >
+            <Download className="text-white w-5 h-5 transition-transform duration-500 ease-in-out group-hover:translate-y-[-4px] group-hover:animate-bounce" />
+            Download CV
+          </Link>
         </Button>
       </motion.div>
 
