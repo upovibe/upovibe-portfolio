@@ -100,7 +100,7 @@ const page: React.FC<PageProps> = async ({ params }: PageProps) => {
         <div className="prose max-w-none mb-6 overflow-hidden h-auto w-full text-gray-300 p-4 backdrop-blur-md rounded-xl">
           <FroalaContentView model={project.content} />
         </div>
-        <Separator className="my-10" />
+        {/* <Separator className="my-10" />
         <div className="text-sm text-gray-500 flex justify-between">
           <div className="flex items-center gap-0.5">
             <span className="hidden lg:inline-flex">Published:</span>
@@ -112,7 +112,7 @@ const page: React.FC<PageProps> = async ({ params }: PageProps) => {
             <Clock12 className="size-4 block lg:hidden" />
             <span> {updatedAt}</span>
           </div>
-        </div>
+        </div> */}
       </div>
       {/* End of Main Content */}
 
