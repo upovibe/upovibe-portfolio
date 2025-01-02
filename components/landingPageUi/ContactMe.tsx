@@ -59,7 +59,7 @@ const ContactMe: React.FC<ContactMeProps> = ({ contactlinks }) => {
       <ContactForm />
       <Separator />
       <motion.div
-        className="w-full flex flex-col flex-wrap md:flex-row items-center justify-between gap-4"
+        className="w-full flex flex-col flex-wrap md:flex-row items-center"
         variants={containerVariants}
         initial="hidden"
         animate={loading ? "hidden" : "visible"}
@@ -79,33 +79,23 @@ const ContactMe: React.FC<ContactMeProps> = ({ contactlinks }) => {
               ))
           : // Contact Link Data Rendering
             contactlinks.map((contactLink) => (
-              <motion.div
+              <Link
                 key={contactLink.id}
-                className="group relative bg-gray-800 p-1 px-2 h-12 pr-3 flex items-center justify-center shadow-xl rounded-full hover:shadow-emerald-500 hover:shadow transition-all duration-300 ease-linear"
-                variants={itemVariants}
+                href={contactLink.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative flex items-center"
               >
-                <Link
-                  href={contactLink.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="relative flex items-center gap-3"
-                >
-                  <div className="relative flex items-center gap-3">
-                    {contactLink.image !== null && (
-                      <Image
-                        src={contactLink.image}
-                        alt={contactLink.name}
-                        width={400}
-                        height={400}
-                        className="min-w-8 max-w-8 transition-all duration-300"
-                      />
-                    )}
-                    <h2 className="text-center text-lg font-bold capitalize text-white transition-all duration-200 ease-linear">
-                      {contactLink.name}
-                    </h2>
-                  </div>
-                </Link>
-              </motion.div>
+                {contactLink.image !== null && (
+                  <Image
+                    src={contactLink.image}
+                    alt={contactLink.name}
+                    width={400}
+                    height={400}
+                    className="min-w-8 max-w-8 transition-all duration-300"
+                  />
+                )}
+              </Link>
             ))}
       </motion.div>
     </div>
