@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
 import { motion } from "framer-motion";
 import ContactForm from "@/components/form/ContactForm";
+import { Separator } from "../ui/separator";
 
 interface ContactLink {
   id: string;
@@ -55,8 +56,8 @@ const ContactMe: React.FC<ContactMeProps> = ({ contactlinks }) => {
       <h3 className="text-2xl font-bold text-emerald-400  mb-10 border-b-2 border-emerald-400 pb-2">
         Contact Me
       </h3>
-      <ContactForm/>
-      <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-gray-500 to-transparent"></div>
+      <ContactForm />
+      <Separator />
       <motion.div
         className="w-full flex flex-col flex-wrap md:flex-row items-center justify-between gap-4"
         variants={containerVariants}
