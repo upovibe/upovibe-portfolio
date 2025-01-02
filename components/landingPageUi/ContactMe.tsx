@@ -4,7 +4,6 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ContactForm from "@/components/form/ContactForm";
-import { Separator } from "../ui/separator";
 
 interface ContactLink {
   id: string;
