@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
 import { motion } from "framer-motion";
+import ContactForm from "@/components/form/ContactForm";
 
 interface ContactLink {
   id: string;
@@ -49,12 +50,13 @@ const ContactMe: React.FC<ContactMeProps> = ({ contactlinks }) => {
   return (
     <div
       id="contact"
-      className="h-auto flex flex-col items-center container mx-auto py-40 px-6 gap-10"
+      className="h- w-full max-w-lg flex flex-col items-center container mx-auto py-40 px-6 gap-10"
     >
       <h3 className="text-2xl font-bold text-emerald-400  mb-10 border-b-2 border-emerald-400 pb-2">
         Contact Me
       </h3>
-      
+      <ContactForm/>
+      <div className="h-0.5 w-full bg-white"></div>
       <motion.div
         className="w-full flex flex-col flex-wrap md:flex-row items-center justify-between gap-4"
         variants={containerVariants}
