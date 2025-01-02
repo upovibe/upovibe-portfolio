@@ -56,7 +56,7 @@ const ContactMe: React.FC<ContactMeProps> = ({ contactlinks }) => {
         Contact Me
       </h3>
       <ContactForm/>
-      <div className="h-0.5 w-full bg-white"></div>
+      <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-gray-500 to-transparent"></div>
       <motion.div
         className="w-full flex flex-col flex-wrap md:flex-row items-center justify-between gap-4"
         variants={containerVariants}
