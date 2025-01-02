@@ -54,6 +54,7 @@ const ContactMe: React.FC<ContactMeProps> = ({ contactlinks }) => {
       <h3 className="text-2xl font-bold text-emerald-400  mb-10 border-b-2 border-emerald-400 pb-2">
         Contact Me
       </h3>
+      
       <motion.div
         className="w-full flex flex-col flex-wrap md:flex-row items-center justify-between gap-4"
         variants={containerVariants}
