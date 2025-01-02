@@ -28,9 +28,9 @@ const ContactMe: React.FC<ContactMeProps> = ({ contactlinks }) => {
       <ContactForm />
       <div className="w-full flex flex-col items-center gap-4 text-white">
         <div className="w-full flex items-center justify-center gap-1">
-          <div className="h-[1px] w-full bg-white"></div>
+          <div className="h-[1px] w-full bg-gray-600"></div>
           <span className="mx-3">OR</span>
-          <div className="h-[1px] w-full bg-white"></div>
+          <div className="h-[1px] w-full bg-gray-600"></div>
         </div>
         <div className="w-full flex items-center justify-center gap-2 mt-4">
           {contactlinks.map((contactLink) => (
