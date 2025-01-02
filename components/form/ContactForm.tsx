@@ -29,7 +29,7 @@ const ContactForm = () => {
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
         {
-          to_name: "Recipient Name",
+          to_name: "Promise Uzor",
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
