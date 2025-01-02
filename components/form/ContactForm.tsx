@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
+import toast from "react-hot-toast";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ const ContactForm = () => {
     message: "",
   });
 
+  const [loading, setLoading] = useState(false); // Added loading state
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
 
@@ -21,26 +23,37 @@ const ContactForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
+    console.log("Submitting form with data:", formData); // Debugging: log form data before sending
+    setLoading(true);
+  
+    // Send the form data using EmailJS
     emailjs
       .send(
-        "YOUR_SERVICE_ID", // Replace with your EmailJS Service ID
-        "YOUR_TEMPLATE_ID", // Replace with your EmailJS Template ID
-        formData,
-        "YOUR_USER_ID" // Replace with your EmailJS User ID
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!, // Service ID from .env file
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!, // Template ID from .env file
+        {
+          to_name: "Recipient Name",  // You can specify the recipient's name or dynamic data
+          from_name: formData.name,   // Matches {{from_name}} in the template
+          from_email: formData.email, // Matches {{from_email}} in the template
+          message: formData.message,  // Matches {{message}} in the template
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_USER_ID! // User ID from .env file
       )
       .then(
-        () => {
-          setSuccess(true);
-          setFormData({ name: "", email: "", message: "" });
-          setTimeout(() => setSuccess(false), 5000); // Hide success message after 5 seconds
+        (response) => {
+          console.log("EmailJS Success Response:", response); // Log success response
+          toast.success("Your message was sent successfully!");
+          setFormData({ name: "", email: "", message: "" }); // Clear form data
+          setLoading(false); // Reset loading state
         },
-        () => {
-          setError(true);
-          setTimeout(() => setError(false), 5000); // Hide error message after 5 seconds
+        (error) => {
+          console.log("EmailJS Error Response:", error); // Log error response
+          toast.error("There was an error sending your message. Please try again later.");
+          setLoading(false); // Reset loading state
         }
       );
   };
+  
 
   return (
     <form
@@ -53,7 +66,7 @@ const ContactForm = () => {
           className="border-gray-500 text-white"
           type="text"
           id="name"
-          name="name"
+          name="name"  // Name matches formData
           value={formData.name}
           onChange={handleChange}
           required
@@ -65,7 +78,7 @@ const ContactForm = () => {
           className="border-gray-500 text-white"
           type="email"
           id="email"
-          name="email"
+          name="email"  // Name matches formData
           value={formData.email}
           onChange={handleChange}
           required
@@ -76,15 +89,15 @@ const ContactForm = () => {
         <Textarea
           className="border-gray-500 text-white"
           id="message"
-          name="message"
+          name="message"  // Name matches formData
           value={formData.message}
           onChange={handleChange}
           required
         />
       </div>
       <div className="w-full flex justify-end">
-        <Button className="my-5" type="submit">
-          Submit
+        <Button className="my-5" type="submit" disabled={loading}>
+          {loading ? "Sending..." : "Submit"}
         </Button>
       </div>
       {success && (
