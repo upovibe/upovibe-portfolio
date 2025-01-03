@@ -87,10 +87,12 @@ const Sidebar: React.FC<SidebarProps> = ({ user }) => {
           ))}
         </ul>
         <div className="flex flex-col gap-2 mt-10">
-          <Link
-            href="/profile"
+            <Link
+            href="https://github.com/upovibe"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-2 p-2 hover:bg-emerald-500/20 transition-all duration-200 ease-linear rounded-lg text-gray-300"
-          >
+            >
             {user?.image && (
               <Avatar className="size-6">
                 <AvatarImage src={user.image} />
